@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="QuickLinks" namespace="" name="QuickLinks" abstract="false" final="false" start="5" end="64">
+  <file path="/var/www/_modules/widgets_quicklinks/trunk/docs/en/phpdox/../../.." file="QuickLinks.php" realpath="/var/www/_modules/widgets_quicklinks/trunk/QuickLinks.php" size="1774" time="2015-03-14T10:22:14+13:00" unixtime="1426281734" sha1="fff2960cce31504f7032e138f5bec34074bb09af" relative="QuickLinks.php"/>
+  <docblock>
+    <description compact="author nicolaas [at] sunnysideup.co.nz"/>
+  </docblock>
+  <extends full="Widget" namespace="" name="Widget"/>
+  <member name="db" type="array" visibility="public" line="7"/>
+  <member name="has_one" type="array" visibility="public" line="9"/>
+  <member name="has_many" type="array" visibility="public" line="19"/>
+  <member name="many_many" type="array" visibility="public" line="21"/>
+  <member name="belongs_many_many" type="array" visibility="public" line="23"/>
+  <member name="defaults" type="array" visibility="public" line="25"/>
+  <member name="title" type="string" default="'Quick Links'" visibility="public" line="27"/>
+  <member name="cmsTitle" type="string" default="'Quick Links'" visibility="public" line="29"/>
+  <member name="description" type="string" default="'Adds a customisable list of links.'" visibility="public" line="31"/>
+  <method name="getCMSFields" start="33" end="48" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="Links" start="50" end="62" abstract="false" final="false" static="false" visibility="public"/>
+</class>
