@@ -4,9 +4,9 @@
  */
 class QuickLinks extends Widget {
 
-	static $db = array();
+	private static $db = array();
 
-	static $has_one = array(
+	private static $has_one = array(
 		"QuickLink1" => "SiteTree",
 		"QuickLink2" => "SiteTree",
 		"QuickLink3" => "SiteTree",
@@ -16,27 +16,27 @@ class QuickLinks extends Widget {
 		"QuickLink7" => "SiteTree"
 	);
 
-	static $has_many = array();
+	private static $has_many = array();
 
-	static $many_many = array();
+	private static $many_many = array();
 
-	static $belongs_many_many = array();
+	private static $belongs_many_many = array();
 
-	static $defaults = array();
+	private static $defaults = array();
 
-	static $title = 'Quick Links';
+	private static $title = 'Quick Links';
 
-	static $cmsTitle = 'Quick Links';
+	private static $cmsTitle = 'Quick Links';
 
-	static $description = 'Adds a customisable list of links.';
+	private static $description = 'Adds a customisable list of links.';
 
 	function getCMSFields() {
-		$source = DataObject::get("SiteTree");
-		$optionArray = $source->toDropDownMap($index = 'ID', $titleField = 'Title', "--- select page ---", $sort = "Sort");
+		$source = SiteTree::get()->sort("Sort");
+		$optionArray = array(0 => "--- select page ---") + $source->map()->toArray();
 		if($source) foreach( $source as $page ) {
 			$optionArray[$page->ID] = $page->MenuTitle;
 		}
-		return new FieldSet(
+		return new FieldList(
 			new DropdownField("QuickLink1ID","First Link",$optionArray),
 			new DropdownField("QuickLink2ID","Second Link",$optionArray),
 			new DropdownField("QuickLink3ID","Third Link",$optionArray),
@@ -48,12 +48,12 @@ class QuickLinks extends Widget {
 	}
 
 	function Links() {
-		Requirements::themedCSS("widgets_quicklinks");
-		$dos = new DataObjectSet();
+		Requirements::themedCSS("widgets_quicklinks", "widgets_quicklinks");
+		$dos = new ArrayList();
 		for($i = 1; $i < 8; $i++) {
 			$fieldname = "QuickLink".$i."ID";
 			if($this->$fieldname > 0) {
-				if($page = DataObject::get_by_id("SiteTree", $this->$fieldname - 0)) {
+				if($page = SiteTree::get()->byID($this->$fieldname - 0)) {
 					$dos->push($page);
 				}
 			}
