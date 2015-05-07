@@ -4,7 +4,7 @@
  */
 class QuickLinks extends Widget {
 
-	private static $db = array();
+	private static $excluded_pages = array("ErrorPage");
 
 	private static $has_one = array(
 		"QuickLink1" => "SiteTree",
@@ -16,14 +16,6 @@ class QuickLinks extends Widget {
 		"QuickLink7" => "SiteTree"
 	);
 
-	private static $has_many = array();
-
-	private static $many_many = array();
-
-	private static $belongs_many_many = array();
-
-	private static $defaults = array();
-
 	private static $title = 'Quick Links';
 
 	private static $cmsTitle = 'Quick Links';
@@ -31,23 +23,15 @@ class QuickLinks extends Widget {
 	private static $description = 'Adds a customisable list of links.';
 
 	function getCMSFields() {
-		$source = SiteTree::get()->sort("Sort");
-		$optionArray = array(0 => "--- select page ---") + $source->map()->toArray();
-		if($source) foreach( $source as $page ) {
-			$optionArray[$page->ID] = $page->MenuTitle;
+		$fieldList = new FieldList();
+		$map = SiteTree::get()->exclude(array("ClassName" => Config::inst()->get("Quicklinks", "excluded_pages")))->map("ID", "MenuTitle")->toArray();
+		for($i = 1; $i < 8; $i++) {
+			$fieldList->push(new DropdownField("QuickLink".$i."ID","Link $i", array(0 => "-- please select --") + $map));
 		}
-		return new FieldList(
-			new DropdownField("QuickLink1ID","First Link",$optionArray),
-			new DropdownField("QuickLink2ID","Second Link",$optionArray),
-			new DropdownField("QuickLink3ID","Third Link",$optionArray),
-			new DropdownField("QuickLink4ID","Fourth Link",$optionArray),
-			new DropdownField("QuickLink5ID","Fifth Link",$optionArray),
-			new DropdownField("QuickLink6ID","Sixth Link",$optionArray),
-			new DropdownField("QuickLink7ID","Seventh Link",$optionArray)
-		);
+		return $fieldList;
 	}
 
-	function Links() {
+	function QuickLinksData() {
 		Requirements::themedCSS("widgets_quicklinks", "widgets_quicklinks");
 		$dos = new ArrayList();
 		for($i = 1; $i < 8; $i++) {

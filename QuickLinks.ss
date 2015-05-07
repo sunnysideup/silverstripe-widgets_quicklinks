@@ -1,6 +1,6 @@
-<% if Links %>
+<% if QuickLinksData %>
 <ul class="QuickLinkEntries">
-	<% loop Links %>
+	<% loop QuickLinksData %>
 		<li><a class="$LinkOrSection $FirstLast" href="$Link"><span>$MenuTitle</span></a></li>
 	<% end_loop %>
 </ul>
