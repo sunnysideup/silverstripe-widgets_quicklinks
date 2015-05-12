@@ -31,18 +31,18 @@ class QuickLinks extends Widget {
 		return $fieldList;
 	}
 
-	function QuickLinksData() {
+	public function WidgetQuickLinksData() {
 		Requirements::themedCSS("widgets_quicklinks", "widgets_quicklinks");
-		$dos = new ArrayList();
+		$al = new ArrayList();
 		for($i = 1; $i < 8; $i++) {
 			$fieldname = "QuickLink".$i."ID";
 			if($this->$fieldname > 0) {
 				if($page = SiteTree::get()->byID($this->$fieldname - 0)) {
-					$dos->push($page);
+					$al->push($page);
 				}
 			}
 		}
-		return $dos;
+		return $al;
 	}
 
 }
