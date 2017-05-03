@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<source xmlns="http://xml.phpdox.net/src">
-  <dir name="/var/www/_modules/widgets_quicklinks/trunk">
-    <file name="_config.php" size="434" time="2015-03-14T10:22:14+13:00" unixtime="1426281734" sha1="e4088a9f49762bb6a508ef36588aaf07f06b9a4c" xml="tokens/_config.php.xml"/>
-    <file name="QuickLinks.php" size="1774" time="2015-03-14T10:22:14+13:00" unixtime="1426281734" sha1="fff2960cce31504f7032e138f5bec34074bb09af" xml="tokens/QuickLinks.php.xml"/>
-  </dir>
-</source>
